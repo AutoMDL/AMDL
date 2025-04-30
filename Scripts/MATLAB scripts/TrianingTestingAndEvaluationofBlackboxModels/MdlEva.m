@@ -1,0 +1,24 @@
+function MdlEva
+load Dataset.mat
+
+load Model_SVM.mat
+[Pre_Train_SVM,Pre_Test_SVM,RSquare_Train_SVM,EMAE_Train_SVM,ERMSE_Train_SVM,RSquare_Test_SVM,EMAE_Test_SVM,ERMSE_Test_SVM]=MdlEvaluation(Mdl_SVM,TrainingInput,TrainingOutput,TestInput,TestOutput);
+save Evaluation_SVM.mat Pre_Train_SVM Pre_Test_SVM RSquare_Train_SVM EMAE_Train_SVM ERMSE_Train_SVM RSquare_Test_SVM EMAE_Test_SVM ERMSE_Test_SVM TrainingOutput TestOutput
+
+load Model_GP.mat
+[Pre_Train_GP,Pre_Test_GP,RSquare_Train_GP,EMAE_Train_GP,ERMSE_Train_GP,RSquare_Test_GP,EMAE_Test_GP,ERMSE_Test_GP]=MdlEvaluation(Mdl_GP,TrainingInput,TrainingOutput,TestInput,TestOutput);
+save Evaluation_GP.mat Pre_Train_GP Pre_Test_GP RSquare_Train_GP EMAE_Train_GP ERMSE_Train_GP RSquare_Test_GP EMAE_Test_GP ERMSE_Test_GP TrainingOutput TestOutput
+
+load Model_tree.mat
+[Pre_Train_tree,Pre_Test_tree,RSquare_Train_tree,EMAE_Train_tree,ERMSE_Train_tree,RSquare_Test_tree,EMAE_Test_tree,ERMSE_Test_tree]=MdlEvaluation(Mdl_tree,TrainingInput,TrainingOutput,TestInput,TestOutput);
+save Evaluation_tree.mat Pre_Train_tree Pre_Test_tree RSquare_Train_tree EMAE_Train_tree ERMSE_Train_tree RSquare_Test_tree EMAE_Test_tree ERMSE_Test_tree TrainingOutput TestOutput
+
+load Model_ensemble.mat
+[Pre_Train_ensemble,Pre_Test_ensemble,RSquare_Train_ensemble,EMAE_Train_ensemble,ERMSE_Train_ensemble,RSquare_Test_ensemble,EMAE_Test_ensemble,ERMSE_Test_ensemble]=MdlEvaluation(Mdl_ensemble,TrainingInput,TrainingOutput,TestInput,TestOutput);
+save Evaluation_ensemble.mat Pre_Train_ensemble Pre_Test_ensemble RSquare_Train_ensemble EMAE_Train_ensemble ERMSE_Train_ensemble RSquare_Test_ensemble EMAE_Test_ensemble ERMSE_Test_ensemble TrainingOutput TestOutput
+
+load Model_NN.mat
+[Pre_Train_NN,Pre_Test_NN,RSquare_Train_NN,EMAE_Train_NN,ERMSE_Train_NN,RSquare_Test_NN,EMAE_Test_NN,ERMSE_Test_NN]=MdlEvaluation(Mdl_NN,TrainingInput,TrainingOutput,TestInput,TestOutput);
+save Evaluation_NN.mat Pre_Train_NN Pre_Test_NN RSquare_Train_NN EMAE_Train_NN ERMSE_Train_NN RSquare_Test_NN EMAE_Test_NN ERMSE_Test_NN TrainingOutput TestOutput
+
+end

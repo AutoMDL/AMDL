@@ -1,0 +1,41 @@
+function [Pre_Train,Pre_Test,RSquare_Train,EMAE_Train,ERMSE_Train,RSquare_Test,EMAE_Test,ERMSE_Test]=MdlEvaluation(Mdl,TrainingInput,TrainingOutput,TestInput,TestOutput)
+clc;
+Pre_Train=predict(Mdl,TrainingInput);
+Pre_Test=predict(Mdl,TestInput);
+[r,p]=corrcoef(Pre_Train,TrainingOutput.logDLi);
+RSquare_Train=r(1,2);
+EMAE_Train=mean(abs(TrainingOutput.logDLi-Pre_Train));
+ERMSE_Train=sqrt(mean((TrainingOutput.logDLi-Pre_Train).^2));
+[r,p]=corrcoef(Pre_Test,TestOutput.logDLi);
+RSquare_Test=r(1,2);
+EMAE_Test=mean(abs(TestOutput.logDLi-Pre_Test));
+ERMSE_Test=sqrt(mean((TestOutput.logDLi-Pre_Test).^2));
+%plot
+axisrange_xmin_train=min(min(TrainingOutput.logDLi),min(Pre_Train));
+axisrange_ymin_train=min(min(TrainingOutput.logDLi),min(Pre_Train));
+axisrange_xmax_train=max(max(TrainingOutput.logDLi),max(Pre_Train));
+axisrange_ymax_train=max(max(TrainingOutput.logDLi),max(Pre_Train));
+axisrange_xmin_test=min(min(TestOutput.logDLi),min(Pre_Test));
+axisrange_ymin_test=min(min(TestOutput.logDLi),min(Pre_Test));
+axisrange_xmax_test=max(max(TestOutput.logDLi),max(Pre_Test));
+axisrange_ymax_test=max(max(TestOutput.logDLi),max(Pre_Test));
+x_train=axisrange_xmin_train:0.01:axisrange_xmax_train;
+y_train=x_train;
+x_test=axisrange_xmin_test:0.01:axisrange_xmax_test;
+y_test=x_test;
+axisrange_train=[axisrange_xmin_train axisrange_xmax_train axisrange_ymin_train axisrange_ymax_train];
+axisrange_test=[axisrange_xmin_test axisrange_xmax_test axisrange_ymin_test axisrange_ymax_test];
+figure;
+subplot(1,2,1);
+plot(TrainingOutput.logDLi,Pre_Train,'r.','markersize',15);
+hold on;
+plot(x_train,y_train,'b-','linewidth',2);
+axis(axisrange_train);
+title([inputname(1),'-train']);
+subplot(1,2,2);
+plot(TestOutput.logDLi,Pre_Test,'r.','markersize',15);
+hold on;
+plot(x_test,y_test,'b-','linewidth',2);
+axis(axisrange_test);
+title([inputname(1),'-test']);
+end
